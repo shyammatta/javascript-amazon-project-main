@@ -29,7 +29,7 @@
 
   /* Use align-items: start; to prevent the elements
      in the grid from stretching vertically. */
-  align-items: start;
+  align-items: starta;
 }
 
 @media (max-width: 1000px) {
