@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            background-color: green;
+            width: 100%;
+            height: 800px;
+            display: none;
+        }
+        .green-container{
+            animation: moveleft 3s  ease;
+
+        }
+        .blue-container{
+            background-color: rgb(49, 0, 128);
+
+            animation: moveright 3s  ease;
+
+
+        }
+        @keyframes moveleft{
+            0%{
+                transform: translateX(1200px);
+            }
+            100%{
+                transform: translateX(-100%);
+            }
+        }
+        @keyframes moveright{
+            0%{
+                transform: translateY(100%);
+            }
+            100%{
+                transform: translateY(-100%);
+            }
+        }
+/* code for main*/
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fef9f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.calendar-container {
+  perspective: 1000px;
+  display: none;
+}
+
+.calendar {
+  width: 400px;
+  height: 250px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 2s ease-in-out;
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.message-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:url('./bdaycode/bg_gif.gif');
+  z-index: 1001;
+
+  color: #090cb9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  display: none;
+}
+#ms-image{
+  width: 250px;
+  height: 500px;
+  position: absolute;
+  top: 10;
+
+  z-index: -999;
+
+}
+h1{
+  margin-top: 600px;
+}
+
+.birthday-message {
+  font-size: 3rem;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container green-container">
+
+    </div>
+    <div class="container blue-container">
+
+    </div>
+
+    <div class="calendar-container">
+        <div class="calendar" id="calendar">
+          <!-- Multiple pages -->
+          <div class="page" ><img src="" alt="Page 1"></div>
+          <div class="page" ><img src="" alt="Page 2"></div>
+          <div class="page" ><img src="" alt="Page 3"></div>
+          <div class="page" ><img src="" alt="Page 4"></div>
+          <div class="page" ><img src="" alt="Page 4"></div>
+
+        </div>
+      </div>
+      <div class="message-container" id="message-container">
+        <img  id="ms-image"src="./bdaycode/pp.jpg" alt="">
+        <h1 class="birthday-message">🎉 Happy Birthday, PRASU! 🎉</h1>
+      </div>
+
+
+
+
+
+
+
+
+
+    <script>
+        setTimeout(()=>{
+            document.querySelector('.green-container').style.display='block';
+            setTimeout(()=>{
+            document.querySelector('.green-container').style.display='none';
+
+
+        },2700)
+
+
+        },2000)
+        setTimeout(()=>{
+
+            document.querySelector('.blue-container').style.display='block';
+            setTimeout(()=>{
+                document.querySelector('.blue-container').style.display='none';
+            },2500)
+
+        },5200)
+
+        setTimeout(() => {
+            document.querySelector('.calendar-container').style.display='block';
+            maincode();
+            
+        }, 7700);
+
+
+        //main code
+        function maincode(){
+
+        
+
+        const images = [
+  './p-img1.png', // First image
+  './p-img1.png', // First image
+
+  './p-img2.png', // Second image
+  './p-img3.png', // Third image
+  './p-img4.jpg', // Last image
+];
+
+const pages = document.querySelectorAll('.page');
+const messageContainer = document.getElementById('message-container');
+
+let currentPage = 0;
+
+// Preload images and assign them to pages
+function preloadImages() {
+  pages.forEach((page, index) => {
+    const img = page.querySelector('img');
+    if (images[index]) {
+      img.src = images[index]; // Assign image based on index
+    }
+  });
+}
+
+// Rotate pages sequentially
+function rotatePages() {
+  if (currentPage < pages.length) {
+    // Flip the current page
+    pages[currentPage].style.transform = 'rotateX(180deg)';
+
+    // Move to the next page
+    currentPage++;
+
+    // Schedule the next rotation
+    setTimeout(rotatePages, 1500); // Delay between flips
+  } else {
+    // Show the final message when all pages are flipped
+    showBirthdayMessage();
+  }
+}
+
+// Show the birthday message after the last page
+function showBirthdayMessage() {
+  const calendar = document.getElementById('calendar');
+  calendar.style.display = 'none';
+  messageContainer.style.display = 'flex';
+}
+
+// Initialize and start the flipping animation
+preloadImages();
+rotatePages();
+
+}
+    </script>
+
+
+</body>
+</html>

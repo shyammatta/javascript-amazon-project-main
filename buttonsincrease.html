@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: rgba(1, 1, 18, 0.329);
+            width: fit-content;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        button{
+            width: 30px;
+            height: 20px;
+        }
+        .value{
+            font-size: 20px;
+            color: rgba(10, 9, 9, 0.972);
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+       <h1>cart value is <span class="cartvalue"></span></h1> 
+    </div>
+    <div class="container">
+        <button class="dec-link">-</button>
+        <span class="value">0</span>
+        <button class="add-link">+</button>
+    </div>
+
+<script>
+    let init_value=0;
+    const f_value=document.querySelector('.value')
+
+    const increasequantity=document.querySelector('.add-link');
+    increasequantity.addEventListener('click',()=>{
+        init_value+=1;
+        f_value.innerHTML=init_value;
+        finalavue(init_value);
+ })
+    const decreaseequantity=document.querySelector('.dec-link');
+    decreaseequantity.addEventListener('click',()=>{
+        init_value-=1;
+        if(init_value<0){
+            alert('no item added');
+            init_value=0
+
+        }
+        else{
+            f_value.innerHTML=init_value;
+            finalavue(init_value);
+
+        }
+    })
+    function finalavue(init_value){
+        document.querySelector('.cartvalue').innerHTML=init_value;
+    }
+
+
+</script>
+</body>
+</html>

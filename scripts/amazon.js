@@ -59,13 +59,14 @@ const addedMessageTimeouts = {};
 
 
 function UpdateCartQuantity(){
-  let cartqunatity=0;
+  let cartquantity=0;
     cart.forEach((item)=>{
-      cartqunatity+=item.quantity;
+      cartquantity+=item.quantity;
     })
-    console.log(cartqunatity);
-    document.querySelector('.cart-quantity').innerHTML=cartqunatity;
+    console.log(cartquantity);
+    document.querySelector('.cart-quantity').innerHTML=cartquantity;
 }
+UpdateCartQuantity();
 
 
 document.querySelectorAll('.js-addtocart')
